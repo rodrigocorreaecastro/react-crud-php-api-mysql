@@ -32,7 +32,7 @@ switch($method) {
         $user = json_decode( file_get_contents('php://input') );
         $sql = "INSERT INTO users(id, name, email, mobile, created_at) VALUES(null, :name, :email, :mobile, :created_at)";
         $stmt = $conn->prepare($sql);
-        $created_at = date('Y-m-d');
+        $created_at = date('Y-m-d H:i:s');
         $stmt->bindParam(':name', $user->name);
         $stmt->bindParam(':email', $user->email);
         $stmt->bindParam(':mobile', $user->mobile);
@@ -50,7 +50,7 @@ switch($method) {
         $user = json_decode( file_get_contents('php://input') );
         $sql = "UPDATE users SET name= :name, email =:email, mobile =:mobile, updated_at =:updated_at WHERE id = :id";
         $stmt = $conn->prepare($sql);
-        $updated_at = date('Y-m-d');
+        $updated_at = date('Y-m-d H:i:s');
         $stmt->bindParam(':id', $user->id);
         $stmt->bindParam(':name', $user->name);
         $stmt->bindParam(':email', $user->email);
